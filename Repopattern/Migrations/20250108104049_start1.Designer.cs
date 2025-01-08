@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repopattern.Context;
 
@@ -11,9 +12,11 @@ using Repopattern.Context;
 namespace Repopattern.Migrations
 {
     [DbContext(typeof(BatchDbContext))]
-    partial class BatchDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250108104049_start1")]
+    partial class start1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,28 +50,19 @@ namespace Repopattern.Migrations
 
             modelBuilder.Entity("Repopattern.Models.Student", b =>
                 {
-                    b.Property<int>("Rn")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Rn"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Marks")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar")
-                        .HasColumnName("StudentName")
-                        .HasColumnOrder(3);
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Rn");
+                    b.HasKey("Id");
 
-                    b.ToTable("StudentDetails", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Repopattern.Models.User", b =>
